@@ -10,7 +10,7 @@ Usage
 import { generateTokenSequenceStrings } from "prosemirror-position-debugger";
 
 // where doc is a prosemirror document (a bonafide prosemirror node)
-const [ positionString, documentString ] = generateTokenSequenceDiagram(doc);
+const [ positionString, documentString ] = generateTokenSequenceStrings(doc);
 
 // the strings line up with each other and are meaningless without each other
 console.log(positionString);
