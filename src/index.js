@@ -1,3 +1,6 @@
+// yes, I'm using global scope mutation. YOLO.
+let globalNodeNameMap;
+
 function emptySpaces(length) {
   let str = "";
   for (let i = 0; i < length; i++) {
@@ -16,7 +19,9 @@ function recursivelyAddToStrings(
   documentString += emptySpaces(curPosString.length);
 
   const isText = node.type.name === "text";
-  const openingTag = isText ? node.text : `<${node.type.name}>`;
+  const openingTag = isText
+    ? node.text
+    : `<${globalNodeNameMap[node.type.name] || node.type.name}>`;
 
   documentString += openingTag;
   positionString += emptySpaces(openingTag.length);
@@ -52,9 +57,12 @@ function recursivelyAddToStrings(
   return [positionString, documentString, curPos];
 }
 
-function generateTokenSequenceStrings(doc) {
+function generateTokenSequenceStrings(doc, nodeNameMap = {}) {
   let positionString = "     ";
   let documentString = "<doc>";
+
+  // global mutation ftw
+  globalNodeNameMap = nodeNameMap;
 
   [positionString, documentString, curPos] = doc.content.content.reduce(
     recursivelyAddToStrings,

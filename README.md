@@ -10,7 +10,10 @@ Usage
 import { generateTokenSequenceStrings } from "prosemirror-position-debugger";
 
 // where doc is a prosemirror document (a bonafide prosemirror node)
-const [ positionString, documentString ] = generateTokenSequenceStrings(doc);
+// second parameter is an optional node name map, useful for shortening the output sequence
+const [positionString, documentString] = generateTokenSequenceStrings(doc, {
+  paragraph: "p",
+});
 
 // the strings line up with each other and are meaningless without each other
 console.log(positionString);
@@ -18,8 +21,9 @@ console.log(documentString);
 ```
 
 To use it in a prosemirror plugin, you could do something like this
+
 ```js
-import { Plugin } from 'prosemirror-state'
+import { Plugin } from "prosemirror-state";
 
 const positionDebuggerPlugin = new Plugin({
   key: "position-debugger",
@@ -50,7 +54,6 @@ const positionDebuggerPlugin = new Plugin({
   }),
 });
 ```
-
 
 ---
 
