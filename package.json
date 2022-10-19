@@ -1,6 +1,6 @@
 {
   "name": "prosemirror-position-debugger",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A simple function that helps visualize prosemirror document token sequence.",
   "main": "src/index.js",
   "license": "MIT",
